@@ -1,0 +1,9 @@
+.DS_Store
+.idea
+.phpintel/
+DBOOPHP/composer.lock
+DBOOPHP/vendor/
+middleware/composer.lock
+middleware/vendor/
+mngphp/composer.lock
+mngphp/vendor/
