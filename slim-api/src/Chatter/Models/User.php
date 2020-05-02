@@ -9,6 +9,6 @@ class User extends \Illuminate\Database\Eloquent\Model
         $user = User::where('apikey', '=', $apikey)->take(1)->get();
         $this->details = $user[0];
 
-        return ($user[0]->exists) ? true : false;
+        return ($user[0]->exists) ? TRUE : FALSE;
     }
 }

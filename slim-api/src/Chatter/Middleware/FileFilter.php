@@ -8,16 +8,12 @@ class FileFilter
 
     public function __invoke($request, $response, $next)
     {
-        $files = $request->getUploadedFiles();
-        $newfile = $files['file'];
-        $newfile_type = $newfile->getClientMediaType();
-
-        if(!in_array($newfile_type, $this->allowedFiles)) {
-            return $response->withStatus(400);
+        $file 		= $request->getUploadedFiles()['file'];
+        $fileType 	= $file->getClientMediaType();
+        if (!in_array($fileType, $this->allowedFiles)) {
+            return $response->withStatus(415);
         }
 
-        $response = $next($request, $response);
-
-        return $response;
+        return $next($request, $response);
     }
 }
