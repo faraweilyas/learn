@@ -2,9 +2,12 @@
     "require": {
         "illuminate/database": "~5.2",
         "slim/slim": "^3.0",
+        "symfony/var-dumper": "^4.4",
         "aws/aws-sdk-php": "^3.18"
     },
     "autoload": {
-        "psr-4": { "Chatter\\": "src/Chatter/"}
+        "psr-4": {
+        	"Chatter\\": "src/Chatter/"
+        }
     }
 }
