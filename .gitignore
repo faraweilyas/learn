@@ -7,3 +7,5 @@ middleware/composer.lock
 middleware/vendor/
 mngphp/composer.lock
 mngphp/vendor/
+slim-api/composer.lock
+slim-api/vendor/
