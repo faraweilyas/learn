@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+
 include 'config/creds.php';
 include 'vendor/autoload.php';
 
