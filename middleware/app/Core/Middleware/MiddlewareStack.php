@@ -32,6 +32,6 @@ class MiddlewareStack
 
     public function handle(Request $request, Response $response)
     {
-        return call_user_func($this->start, $request, $response);
+        return call_user_func_array($this->start, [$request, $response]);
     }
 }

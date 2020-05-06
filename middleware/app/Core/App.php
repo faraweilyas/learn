@@ -25,5 +25,6 @@ class App
     {   
         $result = $this->middleware->handle(new Request(), new Response());
         dump('run app', $result);
+		// dump("-- GLOBALS --" , $GLOBALS);
     }
 }

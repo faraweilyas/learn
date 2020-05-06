@@ -12,5 +12,3 @@ $app->add(new FirstMiddleware());
 $app->add(new SecondMiddleware());
 
 $app->run();
-
-// https://www.lynda.com/PHP-tutorials/Welcome/382572/415817-4.html
