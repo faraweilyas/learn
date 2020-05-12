@@ -1,0 +1,25 @@
+{
+	"name": "faraweilyas/wapp",
+	"description": "whiteGold APP that uses dependency injector",
+	"type": "framework",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "iLyas Farawe",
+			"email": "faraweilyas@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Blaze\\": "src/",
+			"App\\": "app/"
+		}
+	},
+	"require": {
+		"symfony/var-dumper": "^4.4",
+		"php-di/php-di": "^6.1",
+		"symfony/http-foundation": "^5.0",
+		"symfony/console": "^5.0",
+		"symfony/routing": "^5.0"
+	}
+}

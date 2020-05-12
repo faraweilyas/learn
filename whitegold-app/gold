@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__.'/vendor/autoload.php';
+
+use Blaze\App\Commands\TestCommand;
+use Symfony\Component\Console\Application;
+
+// $application = new Application();
+$application = new Application('whiteGold', '1.0.0 '.date('Y-m-d H:i:s'));
+
+$application->add($command = new TestCommand());
+
+// $application->setDefaultCommand($command->getName(), true);
+
+$application->run();
