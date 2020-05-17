@@ -2,7 +2,6 @@
 
 namespace Blaze\Core;
 
-
 class Container
 {
 	private $bindings = [];

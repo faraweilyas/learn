@@ -22,8 +22,8 @@ class Application
 
 	public function buildDIContainer() : Container
 	{
-		dump($this->config);
-		dump($definitions = require $this->config->definitions);
+		// dump($this->config);
+		// dump($definitions = require $this->config->definitions);
 		$containerBuilder = new ContainerBuilder();
 		$containerBuilder->useAutowiring($this->config->useAutowiring);
 		$containerBuilder->useAnnotations($this->config->useAnnotations);

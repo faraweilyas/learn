@@ -5,26 +5,6 @@ use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-// class MyLogger {}
-
-// class Foo {
-// 	public function __construct($dbhost) {
-// 		$this->dbhost = $dbhost;
-// 	}
-// }
-
-// class FooLogger {
-// 	public function __construct($logger) {
-// 		$this->logger = $logger;
-// 	}
-// }
-
-// class Database {
-// 	public function __construct($host) {
-// 		$this->host = $host;
-// 	}
-// }
-
 return [
 	'database.host'     	=> 'localhost',
     'database.port'     	=> 5000,
