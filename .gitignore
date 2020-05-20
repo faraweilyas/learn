@@ -11,3 +11,5 @@ slim-api/composer.lock
 slim-api/vendor/
 whitegold-app/composer.lock
 whitegold-app/vendor/
+mini/composer.lock
+mini/vendor/
