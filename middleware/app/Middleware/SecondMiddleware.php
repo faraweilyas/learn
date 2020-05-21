@@ -12,8 +12,6 @@ class SecondMiddleware implements Middleware
     {
         dump("second middleware");
 
-        $response->code = 201;
-
         return $next($request, $response);
     }
 }
