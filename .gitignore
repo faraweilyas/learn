@@ -13,5 +13,6 @@ whitegold-app/composer.lock
 whitegold-app/vendor/
 mini/composer.lock
 mini/vendor/
+auth/.env
 auth/composer.lock
 auth/vendor/
