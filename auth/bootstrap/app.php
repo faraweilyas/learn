@@ -16,3 +16,14 @@ var_dump(
 	, $_ENV['APP_NAME']
 	, $_SERVER['APP_NAME']
 );
+
+
+$container = new League\Container\Container;
+
+$container->add(Acme\Foo::class)->addArgument(Acme\Bar::class);
+$container->add(Acme\Bar::class);
+
+$foo = $container->get(Acme\Foo::class);
+
+var_dump($foo instanceof Acme\Foo);      // true
+var_dump($foo->bar instanceof Acme\Bar); // true
