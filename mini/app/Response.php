@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Response;
+
 class Response
 {
 	protected $body;
@@ -10,9 +12,32 @@ class Response
 
 	protected $headers = [];
 
-    public function withBody($body)
+    public function withBody($body) : Response
     {
         $this->body = $body;
+
+        return $this;
+    }
+
+    public function withStatus($statusCode) : Response
+    {
+        $this->statusCode = $statusCode;
+
+        return $this;
+    }
+
+    public function withJson($body) : Response
+    {
+        $this
+        	->withHeader("Content-Type", "application/json")
+        	->withBody(json_encode($body));
+
+        return $this;
+    }
+
+    public function withHeader($name, $value) : Response
+    {
+        $this->headers[] = [$name, $value];
 
         return $this;
     }
@@ -22,35 +47,12 @@ class Response
         return $this->body;
     }
 
-    public function getStatusCode()
+    public function getStatusCode() : int
     {
-        return $this->statusCode;
+        return (int) $this->statusCode;
     }
 
-    public function withStatus($statusCode)
-    {
-        $this->statusCode = $statusCode;
-
-        return $this;
-    }
-
-    public function withJson($body)
-    {
-        $this
-        	->withHeader("Content-Type", "application/json")
-        	->withBody(json_encode($body));
-
-        return $this;
-    }
-
-    public function withHeader($name, $value)
-    {
-        $this->headers[] = [$name, $value];
-
-        return $this;
-    }
-
-    public function getHeaders()
+    public function getHeaders() : array
     {
         return $this->headers;
     }
