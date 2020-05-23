@@ -26,7 +26,7 @@ class Router
         return $this;
     }
 
-    public function getResponse()
+    public function getHandler()
     {
     	if (!isset($this->routes[$this->path])) {
     		throw new RouteNotFoundException('No route found for: '.$this->path);
@@ -37,5 +37,15 @@ class Router
     	}
 
         return $this->routes[$this->path];
+    }
+
+    public function getRoutes() : array
+    {
+        return $this->routes;
+    }
+    
+    public function getMethods() : array
+    {
+        return $this->methods;
     }
 }
