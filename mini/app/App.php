@@ -28,17 +28,44 @@ class App
 
 	public function get($uri, $handler)
 	{
-		return $this->container->router->addRoute($uri, $handler, ['GET']);
+		$uri 		= $this->getGroupUri($uri);
+		$methods 	= $this->getGroupMethods(['GET']);
+		return $this->container->router->addRoute($uri, $handler, $methods);
 	}
 
 	public function post($uri, $handler)
 	{
-		return $this->container->router->addRoute($uri, $handler, ['POST']);
+		$uri 		= $this->getGroupUri($uri);
+		$methods 	= $this->getGroupMethods(['POST']);
+		return $this->container->router->addRoute($uri, $handler, $methods);
 	}
 
 	public function map($uri, $handler, array $methods=['GET'])
 	{
+		$uri 		= $this->getGroupUri($uri);
+		$methods 	= $this->getGroupMethods($methods);
 		return $this->container->router->addRoute($uri, $handler, $methods);
+	}
+
+	public function group($uri, $handler, array $methods=['GET'])
+	{
+		$handler($this);
+	}
+
+	public function getGroupUri(string $uri) : string
+	{
+		$debug_backtrace 	= debug_backtrace();
+		$groupUri 			= $debug_backtrace[3]['args'][0] ?? "";
+		$uri 				= "{$groupUri}{$uri}";
+		return $uri;
+	}
+
+	public function getGroupMethods(array $methods) : array
+	{
+		$debug_backtrace 	= debug_backtrace();
+		$groupMethods 		= $debug_backtrace[3]['args'][2] ?? ['GET'];
+		$methods 			= (!empty($methods) || count($methods) > 0) ? $methods : $groupMethods;
+		return $methods;
 	}
 
 	public function run()
@@ -47,18 +74,18 @@ class App
 		$router->setPath($_SERVER['PATH_INFO'] ?? '/');
 
 		try {
-			$response = $router->getResponse();
+			$handler = $router->getHandler();
 		} catch (Exception $exception)
 		{
 			$message = $exception->getMessage();
 			if ($this->container->has('errorHandler')) {
 
-				$response = $this->container->errorHandler;
+				$handler = $this->container->errorHandler;
 			} else {
 				return;
 			}
 		}
-		return $this->respond($this->process($response));
+		return $this->respond($this->process($handler));
 	}
 
 	protected function process($callable)
@@ -83,12 +110,14 @@ class App
 			return;
 		}
 
-		header(sprintf(
-			"HTTP/%s %s %s"
-			, "1.1"
-			, $response->getStatusCode()
-			, ''
-		));
+		if (!headers_sent()) {
+			header(sprintf(
+				"HTTP/%s %s %s"
+				, "1.1"
+				, $response->getStatusCode()
+				, ''
+			));
+		}
 
 		foreach($response->getHeaders() as $header)
 		{

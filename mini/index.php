@@ -42,17 +42,32 @@ $container['errorHandler'] = function()
 
 $app->get('/', [HomeController::class, 'index']);
 
-$app->get('/user', [new UserController($container->db), 'index']);
+$app->get('/names', [new UserController($container->db), 'names']);
 
 $app->post('/signup', function($response)
 {
 	return 'Sign up';
 });
 
-$app->map('/users', function($response)
+$app->group('/api', function($app)
 {
-	return 'Users';
-}, ['GET', 'POST']);
+
+	$app->get('/user', HomeController::class."::user");
+
+	$app->get('/user/id', HomeController::class."::userId");
+
+	$app->get('/user/gender', HomeController::class."::userGender");
+
+	$app->get('/user/name', HomeController::class."::userName");
+
+	$app->post('/user/new', HomeController::class."::userNew");
+
+	$app->map('/users', function($response)
+	{
+		return 'Users';
+	}, ['GET', 'POST']);
+
+});
 
 $app->run();
 
