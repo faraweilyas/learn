@@ -14,7 +14,7 @@ class UserController
 		$this->db = $db;
 	}
 	
-	public function index($response)
+	public function names($response)
 	{
 		$users = $this->db->query("SELECT * FROM names")->fetchAll(PDO::FETCH_CLASS, User::class);
 		
