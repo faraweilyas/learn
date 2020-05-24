@@ -16,3 +16,4 @@ mini/vendor/
 auth/.env
 auth/composer.lock
 auth/vendor/
+auth/01 - codebase/
