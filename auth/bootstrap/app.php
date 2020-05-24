@@ -1,29 +1,26 @@
 <?php
 
+use Dotenv\Dotenv;
+use League\Route\RouteCollection;
+use Dotenv\Exception\InvalidPathException;
+
 session_start();
 
 require_once __DIR__."/../vendor/autoload.php";
 
 try {
-	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/..//')->load();
-} catch (Dotenv\Exception\InvalidPathException $exception)
+	$dotenv = (new Dotenv(__DIR__.'/..//'))->load();
+} catch (InvalidPathException $exception)
 {
 	// 
 }
 
-var_dump(
-	getenv('APP_NAME')
-	, $_ENV['APP_NAME']
-	, $_SERVER['APP_NAME']
-);
+require_once __DIR__.'/container.php';
 
+$route = $container->get(RouteCollection::class);
 
-$container = new League\Container\Container;
+require_once __DIR__.'/../routes/web.php';
 
-$container->add(Acme\Foo::class)->addArgument(Acme\Bar::class);
-$container->add(Acme\Bar::class);
+// dump($route, $container->get('request')->getQueryParams());
 
-$foo = $container->get(Acme\Foo::class);
-
-var_dump($foo instanceof Acme\Foo);      // true
-var_dump($foo->bar instanceof Acme\Bar); // true
+$response = $route->dispatch($container->get('request'), $container->get('response'));
