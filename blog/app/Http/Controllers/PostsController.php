@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Posts;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    public function show($post)
+    public function show($slug)
     {
-        $posts = [
-            'my-first-post' => "Hello, this is my first blog post",
-            'my-second-post' => "Now i'm getting the hang of this blog thing",
-        ];
+        // $post = \DB::table('posts')->where("slug", $slug)->first();
+        // if (is_null($post)) {
+        //     abort(404, "No post yet!");
+        // }
+        $post = Posts::where("slug", $slug)->firstOrFail();
 
-        if (!array_key_exists($post, $posts)) {
-            abort(404, "No post yet!");
-        }
-
-        $post = $posts[$post] ?? "No post yet!";
-
-        return view('post', compact("post"));
+        return view('db-post', compact("post"));
     }
 }
