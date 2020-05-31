@@ -9,6 +9,12 @@
     <link href="{{ pc_asset('/assets/css/default.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ pc_asset('/assets/css/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
     @yield('head')
+    <style type="text/css" media="screen">
+        .hide {display: none;}
+        .float_left {float: left;}
+        .float_right {float: right;}
+        .clear {clear: both;}
+    </style>
 </head>
 <body>
 <div id="header-wrapper">
