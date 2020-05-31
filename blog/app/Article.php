@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Tag;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,6 +34,11 @@ class Article extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 }
