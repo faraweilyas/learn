@@ -2,16 +2,27 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Auth
 Route::get('/', function()
 {
     return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Articles
+Route::get('/article', function()
+{
+    return view('articles.article');
 });
 
 Route::get('/about', function()
 {
     $articles = App\Article::take(3)->latest()->get();
 
-    return view('about', compact('articles'));
+    return view('articles.about', compact('articles'));
 });
 
 Route::get('/articles', "ArticlesController@index")->name('articles.index');
@@ -21,12 +32,28 @@ Route::get('/articles/{article}', "ArticlesController@show")->name('articles.sho
 Route::get('/articles/{article}/edit', "ArticlesController@edit")->name('articles.edit');
 Route::put('/articles/{article}', "ArticlesController@update");
 
-Route::get('/test', function()
+// Learn
+Route::get('/v1/test', function()
 {
     // Getting a GET request value
     $name = request('name');
 
-    return view('test', compact("name"));
+    return view('learn.test', compact("name"));
+});
+
+Route::get('/v2/test', function(App\Collaborator $collaborator)
+{
+    ddd(
+        config('app')
+        , app("Example")
+        , resolve('Example')
+        , $collaborator
+        , resolve('Collaborator')
+        , resolve(App\Collaborator::class)
+        , app()->make(App\Collaborator::class)
+    );
+
+    return view('welcome');
 });
 
 // Using a closure
@@ -43,7 +70,7 @@ Route::get('/v1/posts/{post}', function($post)
 
     $post = $posts[$post] ?? "No post yet!";
 
-    return view('post', compact("post"));
+    return view('learn.post', compact("post"));
 });
 
 // Using a controller and accessing the database
