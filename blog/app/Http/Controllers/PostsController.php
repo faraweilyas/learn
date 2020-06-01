@@ -15,6 +15,7 @@ class PostsController extends Controller
         // }
         $post = Posts::where("slug", $slug)->firstOrFail();
 
-        return view('db-post', compact("post"));
+        // return view('learn.db-post', compact("post"));
+        return \View::make('learn.db-post', compact("post"));
     }
 }

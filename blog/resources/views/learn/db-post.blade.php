@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>My Blog Post</h1>
+    <p>{{ $post->title }}</p>
     <p>{{ $post->body }}</p>
     <p>{!! $post->body !!}</p>
 </body>
