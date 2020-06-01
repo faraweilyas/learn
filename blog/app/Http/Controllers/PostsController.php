@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Posts;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class PostsController extends Controller
 {
@@ -16,6 +16,6 @@ class PostsController extends Controller
         $post = Posts::where("slug", $slug)->firstOrFail();
 
         // return view('learn.db-post', compact("post"));
-        return \View::make('learn.db-post', compact("post"));
+        return View::make('learn.db-post', compact("post"));
     }
 }
