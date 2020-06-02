@@ -25,6 +25,9 @@ Route::get('/about', function()
     return view('articles.about', compact('articles'));
 });
 
+Route::get('/contact', 'ContactController@create');
+Route::post('/contact', 'ContactController@store');
+
 Route::get('/articles', "ArticlesController@index")->name('articles.index');
 Route::post('/articles', "ArticlesController@store");
 Route::get('/articles/create', "ArticlesController@create")->name('articles.create');
@@ -75,3 +78,6 @@ Route::get('/v1/posts/{post}', function($post)
 
 // Using a controller and accessing the database
 Route::get('/v2/posts/{slug}', "PostsController@show");
+
+Route::get('/payments/create', 'PaymentsController@create')->middleware('auth');
+Route::post('/payments', 'PaymentsController@store');
