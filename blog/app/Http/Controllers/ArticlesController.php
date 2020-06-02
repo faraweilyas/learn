@@ -55,6 +55,11 @@ class ArticlesController extends Controller
         // $tags = App\Tag::findMany([3,4]);
         // $article->tags()->attach($tags);
 
+        // $tags->first(function($tag) { return strlen($tag->name) > 5; });
+        // collect(['one', 'two', 'three', ['four', 'five'], 'six'])->flatten()
+        // $articles = App\Article::with('tags')->get();
+        // $articles->pluck('tags.*.name')->collapse()->unique()->map(function($item){ return ucwords($item); });
+
         return redirect(route('articles.index'));
     }
 
