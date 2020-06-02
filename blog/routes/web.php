@@ -12,6 +12,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Mailables and Notifications
+Route::get('/payments/create', 'PaymentsController@create')->middleware('auth');
+Route::post('/payments', 'PaymentsController@store')->middleware('auth');
+Route::get('/notifications', 'UserNotificationsController@show')->middleware('auth');
+
 // Articles
 Route::get('/article', function()
 {
@@ -78,6 +83,3 @@ Route::get('/v1/posts/{post}', function($post)
 
 // Using a controller and accessing the database
 Route::get('/v2/posts/{slug}', "PostsController@show");
-
-Route::get('/payments/create', 'PaymentsController@create')->middleware('auth');
-Route::post('/payments', 'PaymentsController@store');
