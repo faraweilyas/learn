@@ -13,9 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    Welcome, {{ auth()->user()->name }}!<br /><br />
 
-                    You are logged in, {{ Auth::user()->name }}!<br />
-                    You are logged in, {{ auth()->user()->name }}!
+                    You are logged in!<br /><br />
+
+                    Name: {{ Auth::user()->name }}<br />
+                    Email: {{ Auth::user()->email }}<br />
+                    Date Created: {{ Auth::user()->created_at }}<br />
+                    Last Updated: {{ Auth::user()->updated_at }}<br />
                 </div>
             </div>
         </div>

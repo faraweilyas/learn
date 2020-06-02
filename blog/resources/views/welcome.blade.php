@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    @if (Auth::check())
+                    {{-- @if (Auth::check())
                         Hello, {{ Auth::user()->name }}!<br />
                     @else
                         Laravel<br />
@@ -91,10 +91,10 @@
                         Hello, {{ Auth::user()->name }}!<br />
                     @else
                         Please sign in!<br />
-                    @endif
+                    @endif --}}
 
                     @guest
-                        Please sign in!<br />
+                        {{ config('app.name') }}<br />
                     @else
                         Hello, {{ Auth::user()->name }}!<br />
                     @endif
