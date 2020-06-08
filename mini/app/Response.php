@@ -19,7 +19,7 @@ class Response
         return $this;
     }
 
-    public function withStatus($statusCode) : Response
+    public function withStatus(int $statusCode) : Response
     {
         $this->statusCode = $statusCode;
 
