@@ -9,13 +9,14 @@
 function preventFileCaching(string $file='') : string
 {
     $file       = "/".ltrim($file, "/");
-    $filePath   = __DIR__.'/../public'.$file;
-    if (file_exists($filePath)):
-        $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
-        if (in_array($fileExtension, ['css', 'js'])):
-            $lastTimeModified = filemtime($filePath);
-            $file .= "?mod={$lastTimeModified}";
-        endif;
+    $filePath   = public_path().$file;
+    if (!file_exists($filePath))
+        return $file;
+
+    $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
+    if (in_array($fileExtension, ['css', 'js'])):
+        $lastTimeModified   = filemtime($filePath);
+        $file               .= "?mod={$lastTimeModified}";
     endif;
     return $file;
 }
