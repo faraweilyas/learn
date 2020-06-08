@@ -20,7 +20,7 @@ class PaymentRecieved extends Notification
      */
     public function __construct($amount)
     {
-        $this->amount =$amount;
+        $this->amount = $amount;
     }
 
     /**
