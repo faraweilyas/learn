@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Notifications</div>
                 <div class="card-body">
-                    <p>Unread Notifications</p>
+                    <p>Unread Notifications ({{ auth()->user()->countUnreadNotifications() }})</p>
                     <ul>
                         @forelse ($unreadNotifications as $unreadNotification)
                             @if ($unreadNotification->type == "App\Notifications\PaymentRecieved")
@@ -18,7 +18,7 @@
                         @endforelse
                     </ul>
                     <hr />
-                    <p>Read Notifications</p>
+                    <p>Read Notifications({{ auth()->user()->countReadNotifications() }})</p>
                     <ul>
                         @forelse ($readNotifications as $readNotification)
                             @if ($readNotification->type == "App\Notifications\PaymentRecieved")

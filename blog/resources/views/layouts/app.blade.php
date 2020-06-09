@@ -40,7 +40,7 @@
                             <a class="nav-link" href="/payments/create">Make Payment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/notifications">Notifications</a>
+                            <a class="nav-link" href="/notifications">Notifications ({{ auth()->user()->countUnreadNotifications() }})</a>
                         </li>
                         @endauth
                     </ul>
