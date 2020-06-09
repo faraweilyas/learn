@@ -39,8 +39,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Route notifications for the Nexmo channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForNexmo($notification)
+    {
+        return "8086961185";
+    }
+
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+
+    public function countUnreadNotifications()
+    {
+        return auth()->user()->unreadNotifications->count();
+    }
+
+    public function countReadNotifications()
+    {
+        return auth()->user()->readNotifications->count();
     }
 }
