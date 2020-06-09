@@ -60,8 +60,6 @@ Route::get('/v2/test', function(App\Collaborator $collaborator)
         , resolve(App\Collaborator::class)
         , app()->make(App\Collaborator::class)
     );
-
-    return view('welcome');
 });
 
 // Using a closure
