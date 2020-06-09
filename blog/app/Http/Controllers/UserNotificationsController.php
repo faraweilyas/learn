@@ -10,7 +10,8 @@ class UserNotificationsController extends Controller
     {
         return view('mail-notifications.show', [
             'readNotifications'     => auth()->user()->readNotifications,
-            'unreadNotifications'   => tap(auth()->user()->unreadNotifications)->markAsRead(),
+            'unreadNotifications'   => auth()->user()->unreadNotifications,
+            // 'unreadNotifications'   => tap(auth()->user()->unreadNotifications)->markAsRead(),
         ]);
     }
 }
