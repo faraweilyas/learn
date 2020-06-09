@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\ProductPurchased;
 use App\Notifications\PaymentRecieved;
 use Illuminate\Support\Facades\Notification;
 
@@ -19,16 +20,27 @@ class PaymentsController extends Controller
         $amount     = (int) request()->validate([
                         'amount' => 'required|integer',
                     ])['amount'];
+
         try
         {
             // Notification::send(request()->user(), new PaymentRecieved($amount));
-            request()->user()->notify(new PaymentRecieved($amount));
+            // request()->user()->notify(new PaymentRecieved($amount));
             $message = 'Payment notification sent!';
         }
-        catch (\Swift_TransportException $exception)
+        catch (\Exception $exception)
         {
-            $message = $exception->getMessage();
+            // \Swift_TransportException
+            // \Http\Client\Exception\NetworkException
+            // \Http\Client\Exception\RequestException
+            // ddd(get_class($exception), $exception);
+
+            $type       = (get_class($exception) == "Swift_TransportException") ? "Mail: " : "SMS: ";
+            $message    = $type.$exception->getMessage();
         }
-        return redirect('/payments/create')->with('message', $message);
+
+        ProductPurchased::dispatch($amount);
+
+        dd($message);
+        // return redirect('/payments/create')->with('message', $message);
     }
 }
