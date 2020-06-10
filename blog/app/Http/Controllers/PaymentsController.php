@@ -38,7 +38,8 @@ class PaymentsController extends Controller
             $message    = $type.$exception->getMessage();
         }
 
-        ProductPurchased::dispatch($amount);
+        // ProductPurchased::dispatch($amount);
+        // event(new ProductPurchased($amount));
 
         dd($message);
         // return redirect('/payments/create')->with('message', $message);
