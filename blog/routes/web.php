@@ -8,6 +8,10 @@ Route::get('/', function()
     return view('welcome');
 });
 
+Route::get('/conversations', 'ConversationController@index');
+Route::get('/conversations/{conversation}', 'ConversationController@show');
+Route::post('/best-replies/{reply}', 'ConversationController@bestReply');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
