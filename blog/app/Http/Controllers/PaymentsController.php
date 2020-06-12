@@ -24,7 +24,7 @@ class PaymentsController extends Controller
         try
         {
             // Notification::send(request()->user(), new PaymentRecieved($amount));
-            // request()->user()->notify(new PaymentRecieved($amount));
+            request()->user()->notify(new PaymentRecieved($amount));
             $message = 'Payment notification sent!';
         }
         catch (\Exception $exception)
@@ -41,7 +41,7 @@ class PaymentsController extends Controller
         // ProductPurchased::dispatch($amount);
         // event(new ProductPurchased($amount));
 
-        dd($message);
-        // return redirect('/payments/create')->with('message', $message);
+        // dd($message);
+        return redirect('/payments/create')->with('message', $message);
     }
 }
