@@ -10,6 +10,25 @@ class ConversationPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        // if ($user->id === 2) {
+        //     return true;
+        // }
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Conversation  $conversation
+     * @return mixed
+     */
+    public function update(User $user, Conversation $conversation)
+    {
+        return $conversation->user->is($user);
+    }
+
     /**
      * Determine whether the user can view any models.
      *
@@ -30,7 +49,7 @@ class ConversationPolicy
      */
     public function view(User $user, Conversation $conversation)
     {
-        //
+        return $conversation->user->is($user);
     }
 
     /**
@@ -42,18 +61,6 @@ class ConversationPolicy
     public function create(User $user)
     {
         //
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Conversation  $conversation
-     * @return mixed
-     */
-    public function update(User $user, Conversation $conversation)
-    {
-        return $conversation->user->is($user);
     }
 
     /**

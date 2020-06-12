@@ -10,6 +10,8 @@ Route::get('/', function()
 
 Route::get('/conversations', 'ConversationController@index');
 Route::get('/conversations/{conversation}', 'ConversationController@show');
+    // ->middleware('can:view,conversation');
+
 Route::post('/best-replies/{reply}', 'ConversationController@bestReply');
 
 Auth::routes();

@@ -18,6 +18,8 @@ class ConversationController extends Controller
 
     public function show(Conversation $conversation)
     {
+        // $this->authorize($conversation);
+
         return view("conversations.conversation", [
             'conversation' => $conversation
         ]);

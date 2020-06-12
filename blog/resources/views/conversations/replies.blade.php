@@ -5,14 +5,16 @@
 
             <p class="m-0"><strong>{{ $reply->user->name }} said...</strong></p>
 
-            <span style="color: green;">{{ ($conversation->best_reply_id == $reply->id) ? "Best!" : "" }}</span>
+            @if ($reply->isBest())
+                <span style="color: green;">Best reply!</span>
+            @endif
 
         </header>
 
         {{ $reply->body }}
 
 
-        @can ('update-coversation', $conversation)
+        @can ('update', $conversation)
             <form method="POST" action="/best-replies/{{ $reply->id }}">
                 @csrf
                 <button type="submit" class="btn p-0 text-muted">Best Reply?</button>

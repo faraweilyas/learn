@@ -27,6 +27,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::before(function(User $user)
+        {
+            if ($user->id === 2) {
+                return true;
+            }
+        });
+
         Gate::define('update-coversation', function(User $user, Conversation $conversation)
         {
             return $conversation->user->is($user);
