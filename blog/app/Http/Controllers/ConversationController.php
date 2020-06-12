@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Reply;
 use App\Conversation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ConversationController extends Controller
 {
@@ -33,6 +34,5 @@ class ConversationController extends Controller
         $reply->conversation->save();
 
         return back()->with('message', "Best reply has been set");
-        return redirect()->back()->with('message', "Best reply has been set");
     }
 }
