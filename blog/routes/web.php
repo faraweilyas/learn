@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+// auth()->loginUsingId(1);
+
 // Auth
 Route::get('/', function()
 {
@@ -13,6 +15,11 @@ Route::get('/conversations/{conversation}', 'ConversationController@show');
     // ->middleware('can:view,conversation');
 
 Route::post('/best-replies/{reply}', 'ConversationController@bestReply');
+
+Route::get('/reports', function()
+{
+    return "Our secret reports";
+})->middleware('can:view_reports');
 
 Auth::routes();
 

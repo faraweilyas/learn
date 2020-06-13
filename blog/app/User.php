@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Article;
-use App\Project;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -63,5 +61,26 @@ class User extends Authenticatable
     public function countReadNotifications()
     {
         return auth()->user()->readNotifications->count();
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::whereName($role)->firstOrFail();
+        }
+
+        // $this->roles()->save($role);
+        // Sync to override already assigned roles
+        $this->roles()->sync($role, false);
+    }
+
+    public function abilities()
+    {
+        return $this->roles->map->abilities->flatten()->pluck('name')->unique();
     }
 }

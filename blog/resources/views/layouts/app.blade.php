@@ -33,15 +33,25 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="/home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/payments/create">Make Payment</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/conversations">Conversations</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home">Home</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/payments/create">Make Payment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/conversations">Conversations</a>
+                            </li>
+                            @can('edit_forum')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Edit Forum</a>
+                                </li>
+                            @endcan
+                            @can('view_reports')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/reports">View Reports</a>
+                                </li>
+                            @endcan
                         @endauth
                     </ul>
 
