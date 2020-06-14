@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         <section class="px-8 mb-6">
-            <header class="container mx-auto">
+            <header class="container mx-auto flex justify-center">
                 <h1>
                     <a href="/">
                         <img
