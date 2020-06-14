@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+
 /**
  * Prevents file caching for javascript or css files by adding last modified timestamp.
  *
@@ -71,4 +73,15 @@ function formatAmount(string $digit, bool $round=FALSE, $prefix="&#8358;") : str
         return $prefix.number_format($digit, 2, '.', ',');
     else
         return stripper($prefix.number_format($digit, 2, '.', ','), 3);
+}
+
+/**
+ * Gets user for friends list
+ *
+ * @param mixed null|User $user
+ * @return \App\User
+ */
+function user_profile($user=NULL) : User
+{
+    return is_object($user) ? $user : auth()->user();
 }
