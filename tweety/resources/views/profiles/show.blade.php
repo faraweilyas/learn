@@ -1,4 +1,4 @@
-<x-app>
+<x-app :user='$user'>
     <div>
         <header class="mb-6 relative">
 

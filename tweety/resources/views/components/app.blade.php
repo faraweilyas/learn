@@ -15,7 +15,9 @@
 
                 @auth
                 <div class="lg:w-1/6 bg-blue-100 rounded-lg p-4">
-                    @include('_friends_list')
+                    @include('_friends_list', [
+                        'user' => user_profile($user ?? '')
+                    ])
                 </div>
                 @endauth
 
