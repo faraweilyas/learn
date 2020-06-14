@@ -29,17 +29,17 @@ class ProfileController extends Controller
 
     public function update(User $user)
     {
-        // dd(request('avatar'));
-
         $validated = request()->validate([
             'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user), 'alpha_dash'],
             'name' => ['required', 'string', 'max:255'],
-            'avatar' => ['required', 'file'],
+            'avatar' => ['file'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $validated['avatar'] = request('avatar')->store('avatars');
+        if (request('avatar')) {
+            $validated['avatar'] = request('avatar')->store('avatars');
+        }
 
         $user->update($validated);
 

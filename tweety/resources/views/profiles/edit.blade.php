@@ -17,7 +17,7 @@
             <label for="avatar" class="block mb-2 uppercase font-bold text-xs text-gray-700">Avatar:</label>
 
             <div class="flex">
-                <input id="avatar" type="file" class="border border-gray-400 p-2 w-full @error('avatar') is-invalid @enderror" name="avatar" value="" required autofocus>
+                <input id="avatar" type="file" class="border border-gray-400 p-2 w-full @error('avatar') is-invalid @enderror" name="avatar" />
 
                 <img
                     src="{{ $user->avatar }}"
@@ -35,7 +35,7 @@
         <div class="mb-6">
             <label for="name" class="block mb-2 uppercase font-bold text-xs text-gray-700">Name:</label>
 
-            <input id="name" type="text" class="border border-gray-400 p-2 w-full @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required>
+            <input id="name" type="text" class="border border-gray-400 p-2 w-full @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required />
 
             @error('name')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -45,7 +45,7 @@
         <div class="mb-6">
             <label for="email" class="block mb-2 uppercase font-bold text-xs text-gray-700">Email:</label>
 
-            <input id="email" type="email" class="border border-gray-400 p-2 w-full @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
+            <input id="email" type="email" class="border border-gray-400 p-2 w-full @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" />
 
             @error('email')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
