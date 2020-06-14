@@ -51,11 +51,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tweet::class)->latest();
     }
-
-    public function user_profile()
-    {
-        return (Route::currentRouteName() == "tweety.user_profile")
-            ? auth()->user()
-            : auth()->user();
-    }
 }
