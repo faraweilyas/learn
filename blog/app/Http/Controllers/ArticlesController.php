@@ -48,8 +48,8 @@ class ArticlesController extends Controller
         // $article = App\Article::find(5);
         // $article->tags()->attach(1);
         // $article->tags()->attach([2,3]);
-        // $article->tags()->dettach(1);
-        // $article->tags()->dettach([2,3]);
+        // $article->tags()->detach(1);
+        // $article->tags()->detach([2,3]);
         // $tag = App\Tag::find(1);
         // $article->tags()->attach($tag);
         // $tags = App\Tag::findMany([3,4]);
