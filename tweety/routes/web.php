@@ -47,6 +47,12 @@ Route::middleware('auth')->group(function()
     )
     ->name('tweety.user_update')
     ->middleware('can:edit,user');
+
+    Route::get(
+        '/explore',
+        'ExploreController@index'
+    )
+    ->name('tweety.explore');
 });
 
 Route::get(
