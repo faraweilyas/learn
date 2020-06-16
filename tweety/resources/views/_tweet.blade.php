@@ -15,7 +15,10 @@
         <h5 class="font-bold mb-4">
             <a href="{{ route('tweety.user_profile', $tweet->user) }}">
                 {{-- &diams; --}}
-                {{ $tweet->user->name }} <span class="font-light text-sm">· {{ $tweet->created_at->ago(null, true) }}</span>
+                {{ $tweet->user->name }}
+                <x-verified :user='$tweet->user'></x-verified>
+                <span class="text-sm font-light text-gray-600">{{ $tweet->user->getUsername() }}</span>
+                <span class="font-light text-sm">· {{ $tweet->created_at->ago(null, true) }}</span>
             </a>
         </h5>
         <p class="text-sm">{{ $tweet->body }}</p>

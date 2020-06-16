@@ -20,18 +20,29 @@
 
             <div class="flex justify-between items-center mb-6">
                 <div>
-                    <h2 class="font-bold text-2xl mb-0">{{ $user->name }}</h2>
-                    <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
+                    <h2 class="font-bold text-2xl mb-0">
+                        {{ $user->name }}
+                        <x-verified :user='$user'></x-verified>
+                    </h2>
+                    <p class="font-bold text-sm italic text-blue-800">{{ $user->getUsername() }}</p>
 
                     @if (auth()->user()->is($user))
-                        <p class="text-sm mt-2 text-blue-800">
-                            <span class="font-bold mr-2">{{ $user->username }}<br />{{ $user->email }}</span>
-                        </p>
+                        <p class="font-bold text-sm mt-2 text-blue-800">{{ $user->email }}</p>
                     @endif
 
-                    <p class="text-sm mt-2 italic text-blue-800">
-                        <a href=""><span class="hover:underline font-bold mr-2">{{ $user->countFollows() }} Following</span></a>
-                        <a href=""><span class="hover:underline font-bold">{{ $user->countFollowers() }} Followers</span></a>
+                    <p class="text-sm mt-2">Joined {{ $user->created_at->diffForHumans() }}</p>
+
+                    <p class="text-sm mt-2 hover:underline font-bold text-blue-800">
+                        {{ $user->tweets()->count() }} Tweets
+                    </p>
+
+                    <p class="text-sm mt-2 italic">
+                        <a class="hover:underline mr-2" href="">
+                            <span class="font-bold text-blue-800">{{ $user->countFollows() }}</span> Following
+                        </a>
+                        <a class="hover:underline" href="">
+                            <span class="font-bold text-blue-800">{{ $user->countFollowers() }}</span> Followers
+                        </a>
                     </p>
                 </div>
 
