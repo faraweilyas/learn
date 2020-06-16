@@ -6,7 +6,9 @@
             class="w-full"
             placeholder="What's up doc?"
             required
-        >{{ old('body') }}</textarea>
+        >
+            {{ old('body') }}
+        </textarea>
 
         <hr class="my-4" />
 
@@ -16,16 +18,18 @@
                     src="{{ auth()->user()->avatar }}"
                     alt="{{ auth()->user()->name }}"
                     class="rounded-full mr-2"
-                    width='40'
-                    height='40'
+                    width='50'
+                    height='50'
                 />
             </a>
 
             <button
                 type="submit"
-                class="bg-blue-400 rounded-lg shadow py-2 px-2 text-white"
+                class="bg-blue-400 hover:bg-blue-600 rounded-lg shadow px-10 text-sm text-white h-10 inline-flex items-center"
             >
-                Publish
+                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+                </svg> Publish
             </button>
         </footer>
     </form>
