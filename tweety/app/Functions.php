@@ -8,7 +8,7 @@ use App\User;
  * @param string $file
  * @return string
  */
-function preventFileCaching(string $file='') : string
+function preventFileCaching($file=NULL) : string
 {
     $file       = "/".ltrim($file, "/");
     $filePath   = public_path().$file;
@@ -16,7 +16,7 @@ function preventFileCaching(string $file='') : string
         return $file;
 
     $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
-    if (in_array($fileExtension, ['css', 'js'])):
+    if (in_array($fileExtension, ['css', 'js', 'png', 'jpeg', 'jpg'])):
         $lastTimeModified   = filemtime($filePath);
         $file               .= "?mod={$lastTimeModified}";
     endif;
@@ -29,7 +29,7 @@ function preventFileCaching(string $file='') : string
  * @param string $asset
  * @return string
  */
-function pc_asset(string $asset=NULL) : string
+function pc_asset($asset=NULL) : string
 {
     return asset(preventFileCaching($asset));
 }
