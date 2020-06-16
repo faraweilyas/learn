@@ -53,12 +53,12 @@ Route::middleware('auth')->group(function()
         'ExploreController@index'
     )
     ->name('tweety.explore');
-});
 
-Route::get(
-    '/profiles/{user:username}',
-    'ProfileController@show'
-)
-->name('tweety.user_profile');
+    Route::get(
+        '/profiles/{user:username}',
+        'ProfileController@show'
+    )
+    ->name('tweety.user_profile');
+});
 
 Auth::routes();
