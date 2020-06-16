@@ -14,10 +14,12 @@
                 </div>
 
                 @auth
-                <div class="lg:w-1/6 bg-blue-100 rounded-lg p-4">
-                    @include('_friends_list', [
-                        'user' => user_profile($user ?? '')
-                    ])
+                <div class="lg:w-1/7">
+                    <div class="bg-gray-200 border border-gray-300 rounded-lg py-4 px-6">
+                        @include('_friends_list', [
+                            'user' => user_profile($user ?? '')
+                        ])
+                    </div>
                 </div>
                 @endauth
 
