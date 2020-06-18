@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-// auth()->loginUsingId(3);
+// auth()->loginUsingId(2);
 
 // DB::listen(function($query)
 // {
@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function()
 
     Route::get(
         '/explore',
-        'ExploreController@index'
+        'ExploreController'
     )
     ->name('tweety.explore');
 
@@ -59,6 +59,18 @@ Route::middleware('auth')->group(function()
         'ProfileController@show'
     )
     ->name('tweety.user_profile');
+
+    Route::post(
+        '/tweets/{tweet:id}/like',
+        'TweetLikesController@store'
+    )
+    ->name('tweety.like_tweet');
+
+    Route::delete(
+        '/tweets/{tweet:id}/like',
+        'TweetLikesController@destroy'
+    )
+    ->name('tweety.dislike_tweet');
 });
 
 Auth::routes();
