@@ -6,12 +6,16 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     public function show(User $user)
     {
-        return view("profiles.show", compact('user'));
+        return view("profiles.show", [
+            'user' => $user,
+            'tweets' => $user->tweets()->withLikes()->latest()->paginate(10),
+        ]);
     }
 
     public function edit(User $user)
@@ -39,6 +43,7 @@ class ProfileController extends Controller
 
         if (request('avatar')) {
             $validated['avatar'] = request('avatar')->store('avatars');
+            Storage::delete($user->avatar);
         }
 
         $user->update($validated);
