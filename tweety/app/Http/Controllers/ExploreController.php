@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class ExploreController extends Controller
 {
-    public function index()
+    public function __invoke()
     {
         return view("explore", [
-            'users' => User::latest()->paginate(50),
+            'users' => User::where('id', '!=', auth()->user()->id)->latest()->paginate(10),
         ]);
     }
 }
