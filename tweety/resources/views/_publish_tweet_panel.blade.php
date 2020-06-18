@@ -6,16 +6,17 @@
             class="w-full"
             placeholder="What's up doc?"
             required
+            autofocus
         >
             {{ old('body') }}
         </textarea>
 
         <hr class="my-4" />
 
-        <footer class="flex justify-between">
+        <footer class="flex justify-between items-center">
             <a href="{{ route('tweety.user_profile', auth()->user()) }}">
                 <img
-                    src="{{ auth()->user()->avatar }}"
+                    src="{{ auth()->user()->avatar_path }}"
                     alt="{{ auth()->user()->name }}"
                     class="rounded-full mr-2"
                     width='50'

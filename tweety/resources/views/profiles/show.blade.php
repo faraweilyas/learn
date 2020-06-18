@@ -13,13 +13,13 @@
                 <img
                     style='width: 150px; left: 50%; transform: translateX(-50%) translateY(50%);'
                     class="rounded-full mr-2 absolute bottom-0"
-                    src="{{ $user->avatar }}"
+                    src="{{ $user->avatar_path }}"
                     alt="{{ $user->name }}"
                 />
             </div>
 
             <div class="flex justify-between items-center mb-6">
-                <div>
+                <div style="max-width: 270px;">
                     <h2 class="font-bold text-2xl mb-0">
                         {{ $user->name }}
                         <x-verified :user='$user'></x-verified>
@@ -66,7 +66,7 @@
         </header>
 
         @include('_timeline', [
-            'tweets' => $user->tweets
+            'tweets' => $tweets
         ])
     </div>
 </x-app>

@@ -22,10 +22,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAvatarAttribute($avatar)
+    public function getAvatarPathAttribute()
     {
-        return !empty($avatar)
-            ? pc_asset('storage/'.$avatar)
+        return !empty($this->avatar)
+            ? pc_asset('storage/'.$this->avatar)
             : "https://i.pravatar.cc/200?u={$this->email}";
     }
 
@@ -50,15 +50,22 @@ class User extends Authenticatable
 
         return Tweet::whereIn('user_id', $ids)
             ->orWhere('user_id', $this->id)
+            ->withLikes()
             ->latest()
-            ->get();
+            ->paginate(10);
 
         // $ids->push($this->id);
+        // return Tweet::whereIn('user_id', $ids)->latest()->paginate(10);
         // return Tweet::whereIn('user_id', $ids)->latest()->get();
     }
 
     public function tweets()
     {
-        return $this->hasMany(Tweet::class)->latest();
+        return $this->hasMany(Tweet::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }

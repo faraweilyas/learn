@@ -6,7 +6,7 @@
             <a href="{{ route('tweety.user_profile', $following) }}" class="flex items-center text-sm">
                 <img
                     class="rounded-full mr-2"
-                    src="{{ $following->avatar }}"
+                    src="{{ $following->avatar_path }}"
                     alt="{{ $following->name }}"
                     width='40'
                     height='40'
@@ -32,7 +32,7 @@
             <a href="{{ route('tweety.user_profile', $follower) }}" class="flex items-center text-sm">
                 <img
                     class="rounded-full mr-2"
-                    src="{{ $follower->avatar }}"
+                    src="{{ $follower->avatar_path }}"
                     alt="{{ $follower->name }}"
                     width='40'
                     height='40'

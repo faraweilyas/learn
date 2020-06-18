@@ -20,7 +20,7 @@
                 <input id="avatar" type="file" class="border border-gray-400 p-2 w-full @error('avatar') is-invalid @enderror" name="avatar" />
 
                 <img
-                    src="{{ $user->avatar }}"
+                    src="{{ $user->avatar_path }}"
                     alt="{{ $user->username }}"
                     width='40'
                     height='40'
@@ -74,9 +74,12 @@
 
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="px-6 py-4 rounded text-sm uppercase bg-blue-400 text-white">
+                <button type="submit" class="px-6 py-4 rounded text-sm uppercase bg-blue-400 mr-4 text-white">
                     Update Profile
                 </button>
+                <a href="{{ route('tweety.user_profile', auth()->user()) }}" class="px-6 py-4 rounded text-sm uppercase bg-red-400 text-white">
+                    Cancel
+                </a>
             </div>
         </div>
 

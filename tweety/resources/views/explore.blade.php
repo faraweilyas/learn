@@ -6,7 +6,7 @@
                 <img
                     style='width: 40px;'
                     class="rounded-full mr-2 mb-3"
-                    src="{{ $user->avatar }}"
+                    src="{{ $user->avatar_path }}"
                     alt="{{ $user->name }}"
                 />
 
