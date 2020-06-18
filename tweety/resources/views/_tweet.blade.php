@@ -3,7 +3,7 @@
         <a href="{{ route('tweety.user_profile', $tweet->user) }}" title="{{ $tweet->user->name }}">
             <img
                 class="rounded-full mr-2"
-                src="{{ $tweet->user->avatar }}"
+                src="{{ $tweet->user->avatar_path }}"
                 alt=""
                 width='40'
                 height='40'
@@ -21,6 +21,7 @@
                 <span class="font-light text-sm">· {{ $tweet->created_at->ago(null, true) }}</span>
             </a>
         </h5>
-        <p class="text-sm">{{ $tweet->body }}</p>
+        <p class="text-sm mb-3">{{ $tweet->body }}</p>
+        <x-like-dislike-butons :tweet='$tweet'></x-like-dislike-butons>
     </div>
 </div>
