@@ -59,4 +59,17 @@ trait Followable
             ->where('following_user_id', $user->id)
             ->exists();
     }
+
+    public function friends()
+    {
+        $followsIds     = $this->follows()->pluck('id');
+        $followersIds   = $this->followers()->pluck('id');
+        $friendsIds     = $followsIds->merge($followersIds)->unique()->all();
+        $friends        = User::whereIn('id', $friendsIds)
+                            ->latest()
+                            ->get();
+
+        // dd($followsIds, $followersIds, $friendsIds, $friends);
+        return $friends;
+    }
 }
